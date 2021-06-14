@@ -1,26 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "templatemod",
+  "id": "offhandoverhaul",
   "version": "${version}",
-  "name": "TemplateMod",
-  "description": "A Template Mod",
+  "name": "Offhand Overhaul",
+  "description": "Stops block being placed from the off-hand slot under certain conditions",
   "authors": [
     "Jamalam360"
   ],
   "contributors": [],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/templatemod/icon.png",
+  "icon": "assets/offhandfix/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.jamalam360.TemplateModInit"
+      "com.jamalam360.OffhandOverhaulModInit"
     ],
     "client": [],
-    "server": []
+    "server": [],
+    "modmenu": [
+      "com.jamalam360.config.ModMenuIntegration"
+    ]
   },
   "mixins": [
-    "templatemod.mixins.json"
+    "offhandoverhaul.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.11.3",

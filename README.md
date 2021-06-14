@@ -1,1 +1,1 @@
-My Template For Fabric Mods
+A mod to fix annoying placement when blocks are in your offhand
