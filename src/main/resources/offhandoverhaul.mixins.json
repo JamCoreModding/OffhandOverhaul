@@ -3,9 +3,10 @@
   "package": "com.jamalam360.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+  ],
+  "client": [
     "ClientPlayerInteractionManagerMixin"
   ],
-  "client": [],
   "server": [],
   "injectors": {
     "defaultRequire": 1
