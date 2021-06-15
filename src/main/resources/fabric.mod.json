@@ -10,7 +10,7 @@
   "contributors": [],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/offhandfix/icon.png",
+  "icon": "assets/offhandoverhaul/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
