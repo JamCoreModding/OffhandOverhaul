@@ -19,7 +19,7 @@
     "client": [],
     "server": [],
     "modmenu": [
-      "com.jamalam360.config.ModMenuIntegration"
+      "com.jamalam360.config.OffhandOverhaulModMenuIntegration"
     ]
   },
   "mixins": [
