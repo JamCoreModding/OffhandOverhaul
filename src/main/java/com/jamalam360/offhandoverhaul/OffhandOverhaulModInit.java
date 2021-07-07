@@ -1,6 +1,6 @@
-package com.jamalam360;
+package com.jamalam360.offhandoverhaul;
 
-import com.jamalam360.config.ModConfig;
+import com.jamalam360.offhandoverhaul.config.ModConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;

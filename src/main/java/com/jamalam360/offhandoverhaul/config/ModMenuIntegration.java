@@ -1,4 +1,4 @@
-package com.jamalam360.config;
+package com.jamalam360.offhandoverhaul.config;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
@@ -11,7 +11,7 @@ import net.fabricmc.api.Environment;
  */
 
 @Environment(EnvType.CLIENT)
-public class OffhandOverhaulModMenuIntegration implements ModMenuApi {
+public class ModMenuIntegration implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         return parent -> AutoConfig.getConfigScreen(ModConfig.class, parent).get();

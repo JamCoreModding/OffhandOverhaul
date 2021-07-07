@@ -1,4 +1,4 @@
-package com.jamalam360;
+package com.jamalam360.offhandoverhaul;
 
 /**
  * @author Jamalam360

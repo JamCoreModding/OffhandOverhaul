@@ -1,10 +1,11 @@
-package com.jamalam360.mixin;
+package com.jamalam360.offhandoverhaul.mixin;
 
-import com.jamalam360.config.ModConfig;
+import com.jamalam360.offhandoverhaul.config.ModConfig;
 import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.item.BlockItem;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -23,21 +24,23 @@ public class ClientPlayerInteractionManagerMixin {
     public void interactBlock(ClientPlayerEntity player, ClientWorld world, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir) {
         ModConfig config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
 
-        switch (config.offhandPlacementType) {
-            case SNEAKING:
-                if (hand == Hand.OFF_HAND && !player.isSneaking()) {
-                    cir.setReturnValue(ActionResult.FAIL);
-                }
+        if (player.getStackInHand(hand).getItem() instanceof BlockItem) {
+            switch (config.offhandPlacementType) {
+                case SNEAKING:
+                    if (hand == Hand.OFF_HAND && !player.isSneaking()) {
+                        cir.setReturnValue(ActionResult.FAIL);
+                    }
 
-                break;
-            case NOT_SNEAKING:
-                if (hand == Hand.OFF_HAND && player.isSneaking()) {
-                    cir.setReturnValue(ActionResult.FAIL);
-                }
+                    break;
+                case NOT_SNEAKING:
+                    if (hand == Hand.OFF_HAND && player.isSneaking()) {
+                        cir.setReturnValue(ActionResult.FAIL);
+                    }
 
-                break;
-            case VANILLA:
-                break;
+                    break;
+                case VANILLA:
+                    break;
+            }
         }
     }
 }
