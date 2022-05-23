@@ -22,13 +22,20 @@
  * THE SOFTWARE.
  */
 
-package com.jamalam360.offhandoverhaul;
+package io.github.jamalam360.offhandoverhaul.config;
+
+import io.github.jamalam360.jamlib.config.JamLibConfig;
+import io.github.jamalam360.offhandoverhaul.OffhandPlacementAction;
 
 /**
  * @author Jamalam360
  */
-public enum OffhandPlacementType {
-    SNEAKING,
-    NOT_SNEAKING,
-    VANILLA
+
+public class ModConfig extends JamLibConfig {
+    @Entry
+    public static boolean overruleMainHand = true;
+    @Entry
+    public static OffhandPlacementAction rightClick = OffhandPlacementAction.NONE;
+    @Entry
+    public static OffhandPlacementAction sneakRightClick = OffhandPlacementAction.PLACE;
 }

@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-package com.jamalam360.offhandoverhaul.mixin;
+package io.github.jamalam360.offhandoverhaul.mixin;
 
-import com.jamalam360.offhandoverhaul.config.ModConfig;
-import me.shedaniel.autoconfig.AutoConfig;
+import io.github.jamalam360.offhandoverhaul.OffhandPlacementAction;
+import io.github.jamalam360.offhandoverhaul.config.ModConfig;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
 import net.minecraft.client.world.ClientWorld;
@@ -44,28 +44,28 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ClientPlayerInteractionManager.class)
 public class ClientPlayerInteractionManagerMixin {
-    @Inject(cancellable = true, at = @At("HEAD"), method = "interactBlock(Lnet/minecraft/client/network/ClientPlayerEntity;Lnet/minecraft/client/world/ClientWorld;Lnet/minecraft/util/Hand;Lnet/minecraft/util/hit/BlockHitResult;)Lnet/minecraft/util/ActionResult;")
-    public void interactBlock(ClientPlayerEntity player, ClientWorld world, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir) {
-        ModConfig config = AutoConfig.getConfigHolder(ModConfig.class).getConfig();
-
+    @Inject(
+            method = "interactBlock(Lnet/minecraft/client/network/ClientPlayerEntity;Lnet/minecraft/client/world/ClientWorld;Lnet/minecraft/util/Hand;Lnet/minecraft/util/hit/BlockHitResult;)Lnet/minecraft/util/ActionResult;",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    public void offhandoverhaul$modifyOffhandBehavior(ClientPlayerEntity player, ClientWorld world, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir) {
         if (player.getStackInHand(hand).getItem() instanceof BlockItem) {
-            switch (config.offhandPlacementType) {
-                case SNEAKING:
-                    if (hand == Hand.OFF_HAND && !player.isSneaking()) {
-                        cir.setReturnValue(ActionResult.FAIL);
-                    }
-
-                    break;
-                case NOT_SNEAKING:
-                    if (hand == Hand.OFF_HAND && player.isSneaking()) {
-                        cir.setReturnValue(ActionResult.FAIL);
-                    }
-
-                    break;
-                case VANILLA:
-                    break;
+            if (hand == Hand.OFF_HAND) {
+                if (!offhandoverhaul$shouldInteractOffhand(player)) {
+                    cir.setReturnValue(ActionResult.FAIL);
+                }
+            } else if (hand == Hand.MAIN_HAND && ModConfig.overruleMainHand && offhandoverhaul$shouldInteractOffhand(player)) {
+                cir.setReturnValue(ActionResult.PASS);
             }
         }
     }
-}
 
+    public boolean offhandoverhaul$shouldInteractOffhand(ClientPlayerEntity player) {
+        if (!player.isSneaking()) {
+            return ModConfig.rightClick != OffhandPlacementAction.NONE;
+        } else {
+            return ModConfig.sneakRightClick != OffhandPlacementAction.NONE;
+        }
+    }
+}

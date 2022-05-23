@@ -1,4 +1,11 @@
 {
-  "text.autoconfig.offhandoverhaul.title": "Offhand Overhaul Configuration",
-  "text.autoconfig.offhandoverhaul.option.offhandPlacementType": "Offhand Placement Type"
+  "offhandoverhaul.jamlibconfig.title": "Offhand Overhaul Config",
+  "offhandoverhaul.jamlibconfig.overruleMainHand": "Overrule Main Hand",
+  "offhandoverhaul.jamlibconfig.overruleMainHand.tooltip": "Whether to use the offhand to place blocks instead of the main hand when both can place.",
+  "offhandoverhaul.jamlibconfig.rightClick": "Right Click Action",
+  "offhandoverhaul.jamlibconfig.rightClick.tooltip": "The action to perform when right clicking with a block in your offhand.",
+  "offhandoverhaul.jamlibconfig.sneakRightClick": "Sneak Right Click Action",
+  "offhandoverhaul.jamlibconfig.sneakRightClick.tooltip": "The action to perform when sneak/shift right clicking with a block in your offhand.",
+  "offhandoverhaul.jamlibconfig.enum.OffhandPlacementAction.PLACE": "Place Block",
+  "offhandoverhaul.jamlibconfig.enum.OffhandPlacementAction.NONE": "Do Nothing"
 }

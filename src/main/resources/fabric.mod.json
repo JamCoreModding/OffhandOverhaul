@@ -3,33 +3,38 @@
   "id": "offhandoverhaul",
   "version": "${version}",
   "name": "Offhand Overhaul",
-  "description": "Stops block being placed from the off-hand slot under certain conditions",
+  "description": "Stops block being placed from the off-hand slot under certain, configurable conditions",
   "authors": [
-    "Jamalam360"
+    "Jamalam"
   ],
-  "contributors": [],
-  "contact": {},
+  "contact": {
+    "sources": "https://github.com/JamCoreModding/OffhandOverhaul",
+    "issues": "https://github.com/JamCoreModding/OffhandOverhaul/issues"
+  },
   "license": "MIT",
   "icon": "assets/offhandoverhaul/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.jamalam360.offhandoverhaul.OffhandOverhaulModInit"
+      "io.github.jamalam360.offhandoverhaul.OffhandOverhaulModInit"
     ],
-    "client": [],
-    "server": [],
     "modmenu": [
-      "com.jamalam360.offhandoverhaul.config.ModMenuIntegration"
+      "io.github.jamalam360.offhandoverhaul.config.ModMenuIntegration"
     ]
   },
   "mixins": [
     "offhandoverhaul.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.11.3",
-    "fabric": "*"
+    "fabricloader": ">=0.12.5",
+    "fabric": "*",
+    "jamlib": ">=0.0.5"
+  },
+  "suggests": {
+    "modmenu": "*"
   },
   "custom": {
-    "notify_version_url": "https://raw.githubusercontent.com/JamCoreModding/Meta/main/data/mod_versions.json"
+    "notify_gradle_properties_url": "https://raw.githubusercontent.com/JamCoreModding/OffhandOverhaul/main/gradle.properties",
+    "notify_gradle_properties_key": "mod_version"
   }
 }

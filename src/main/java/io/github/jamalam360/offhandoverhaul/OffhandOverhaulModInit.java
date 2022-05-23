@@ -22,22 +22,21 @@
  * THE SOFTWARE.
  */
 
-package com.jamalam360.offhandoverhaul.config;
+package io.github.jamalam360.offhandoverhaul;
 
-import com.terraformersmc.modmenu.api.ConfigScreenFactory;
-import com.terraformersmc.modmenu.api.ModMenuApi;
-import me.shedaniel.autoconfig.AutoConfig;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import io.github.jamalam360.jamlib.config.JamLibConfig;
+import io.github.jamalam360.offhandoverhaul.config.ModConfig;
+import net.fabricmc.api.ClientModInitializer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-/**
- * @author Jamalam360
- */
+public class OffhandOverhaulModInit implements ClientModInitializer {
+    public static final String MOD_ID = "offhandoverhaul";
+    private static final Logger LOGGER = LogManager.getLogger("OffhandOverhaul/Initializer");
 
-@Environment(EnvType.CLIENT)
-public class ModMenuIntegration implements ModMenuApi {
     @Override
-    public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return parent -> AutoConfig.getConfigScreen(ModConfig.class, parent).get();
+    public void onInitializeClient() {
+        LOGGER.info("Initializing OffhandOverhaul...");
+        JamLibConfig.init(MOD_ID, ModConfig.class);
     }
 }

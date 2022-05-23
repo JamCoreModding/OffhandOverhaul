@@ -1,12 +1,15 @@
-name: Build
-on: push
+name: Update Licenses and Build
+on: [
+  push,
+  pull_request
+]
 
 jobs:
   update-license:
     strategy:
       matrix:
         java: [
-            17
+          17
         ]
         os: [ ubuntu-20.04 ]
     runs-on: ${{ matrix.os }}
@@ -16,6 +19,17 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
+
+      - name: Enable Caching
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/loom-cache
+            ~/.gradle/machete-build
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-gradle
 
       - name: Get Branch Name
         id: branch-name
@@ -40,7 +54,7 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions"
           git pull origin ${{ steps.branch-name.outputs.current_branch }}
-          git commit -m "Update License [bot]" -a
+          git commit -m "Update License [Bot]" -a
       - name: Push License Changes
         uses: ad-m/github-push-action@master
         with:
@@ -52,7 +66,7 @@ jobs:
     strategy:
       matrix:
         java: [
-            17
+          17
         ]
         os: [ ubuntu-20.04 ]
     runs-on: ${{ matrix.os }}
@@ -63,17 +77,20 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      - name: Enable Caching
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/loom-cache
+            ~/.gradle/machete-build
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-gradle
+
       - name: Get Branch Name
         id: branch-name
         uses: tj-actions/branch-names@v5
-
-      - name: Check If Running In Template Repository
-        if: ${{ github.event.repository.name == 'FabricTemplateMod' }}
-        run: echo "run=false" >> $GITHUB_ENV
-
-      - name: Check If Initial Commit
-        if: ${{ github.event.commits[0].message == 'Initial commit' }}
-        run: echo "run=false" >> $GITHUB_ENV
 
       - name: Check For --no-actions Flag
         if: ${{ contains(github.event.commits[0].message, '--no-actions') }}
@@ -92,7 +109,7 @@ jobs:
       - name: Make Gradle Wrapper Executable
         if: ${{ runner.os != 'Windows' && env.run != 'false' }}
         run: chmod +x ./gradlew
-        
+
       - name: Pull License Changes
         if: ${{  env.run != 'false'  }}
         run: git pull origin ${{ steps.branch-name.outputs.current_branch }}
@@ -107,3 +124,10 @@ jobs:
         with:
           name: Artifacts
           path: build/libs/
+
+      - name: Capture Development Build Artifacts
+        if: ${{ env.run != 'false' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: Artifacts (Dev)
+          path: build/devlibs/
