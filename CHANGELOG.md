@@ -2,8 +2,8 @@
 
 ### Features
 
-- Complete overhaul.
+### Fixes
 
-Closed issues: #3
+Closed issues: None.
 
-[Full Changelog](https://github.com/JamCoreModding/OffhandOverhaul/compare/1.2.0...2.0.0)
+[Full Changelog](https://github.com/JamCoreModding/OffhandOverhaul/compare/...)
