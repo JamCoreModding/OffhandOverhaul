@@ -37,5 +37,5 @@ public class ModConfig extends JamLibConfig {
     @Entry
     public static OffhandPlacementAction rightClick = OffhandPlacementAction.NONE;
     @Entry
-    public static OffhandPlacementAction sneakRightClick = OffhandPlacementAction.PLACE;
+    public static OffhandPlacementAction sneakRightClick = OffhandPlacementAction.USE;
 }

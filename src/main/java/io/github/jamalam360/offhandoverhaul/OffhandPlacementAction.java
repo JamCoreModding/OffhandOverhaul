@@ -28,6 +28,6 @@ package io.github.jamalam360.offhandoverhaul;
  * @author Jamalam360
  */
 public enum OffhandPlacementAction {
-    PLACE,
+    USE,
     NONE
 }

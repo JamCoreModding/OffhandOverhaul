@@ -6,6 +6,6 @@
   "offhandoverhaul.jamlibconfig.rightClick.tooltip": "The action to perform when right clicking with a block in your offhand.",
   "offhandoverhaul.jamlibconfig.sneakRightClick": "Sneak Right Click Action",
   "offhandoverhaul.jamlibconfig.sneakRightClick.tooltip": "The action to perform when sneak/shift right clicking with a block in your offhand.",
-  "offhandoverhaul.jamlibconfig.enum.OffhandPlacementAction.PLACE": "Place Block",
+  "offhandoverhaul.jamlibconfig.enum.OffhandPlacementAction.USE": "Use Item/Place Block",
   "offhandoverhaul.jamlibconfig.enum.OffhandPlacementAction.NONE": "Do Nothing"
 }

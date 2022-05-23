@@ -29,7 +29,6 @@ import io.github.jamalam360.offhandoverhaul.config.ModConfig;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.item.BlockItem;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -50,14 +49,12 @@ public class ClientPlayerInteractionManagerMixin {
             cancellable = true
     )
     public void offhandoverhaul$modifyOffhandBehavior(ClientPlayerEntity player, ClientWorld world, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir) {
-        if (player.getStackInHand(hand).getItem() instanceof BlockItem) {
-            if (hand == Hand.OFF_HAND) {
-                if (!offhandoverhaul$shouldInteractOffhand(player)) {
-                    cir.setReturnValue(ActionResult.FAIL);
-                }
-            } else if (hand == Hand.MAIN_HAND && ModConfig.overruleMainHand && offhandoverhaul$shouldInteractOffhand(player)) {
-                cir.setReturnValue(ActionResult.PASS);
+        if (hand == Hand.OFF_HAND) {
+            if (!offhandoverhaul$shouldInteractOffhand(player)) {
+                cir.setReturnValue(ActionResult.FAIL);
             }
+        } else if (hand == Hand.MAIN_HAND && ModConfig.overruleMainHand && offhandoverhaul$shouldInteractOffhand(player)) {
+            cir.setReturnValue(ActionResult.PASS);
         }
     }
 
