@@ -13,9 +13,9 @@
   },
   "license": "MIT",
   "icon": "assets/offhandoverhaul/icon.png",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
-    "main": [
+    "client": [
       "io.github.jamalam360.offhandoverhaul.OffhandOverhaulModInit"
     ],
     "modmenu": [
