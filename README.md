@@ -1,3 +1,5 @@
+**DEPRECATION NOTICE: This mod is no longer actively maintained and will not receive any form of updates. If you are interested in taking ownership of this mod, please contact me on [my Discord server](https://discord.jamalam.tech).**
+
 # Offhand Overhaul
 
 ![Environment](https://img.shields.io/badge/environment-client-1976d2?style=flat-square)
